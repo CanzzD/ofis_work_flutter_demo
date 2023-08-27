@@ -12,13 +12,6 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _adController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
-  void _kullaniciOlustur() async {
-    String ad = _adController.text;
-    String email = _emailController.text;
-
-    kullaniciOlustur(ad, email);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +39,9 @@ class _SignInPageState extends State<SignInPage> {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: _kullaniciOlustur,
+              onPressed: () {
+                createUser();
+              },
               child: Text('Kullanıcı Oluştur'),
             ),
           ],
