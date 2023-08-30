@@ -21,8 +21,7 @@ class CategoryProvider extends ChangeNotifier {
 
     if (response.statusCode == 200) {
       List<dynamic> categoriesdynamic = [];
-      categoriesdynamic =
-          json.decode(response.body)["data"]["categories"];
+      categoriesdynamic = json.decode(response.body)["data"]["categories"];
 
       List<CategoryModel> categories = [];
 
@@ -43,26 +42,24 @@ class CategoryProvider extends ChangeNotifier {
 
     return category;
   }
-   Future<bool> deleteCategory(int categoryId) async {
-    Map<String, String> headers = {
-      "Accept": "application/json",
-      "Content-Type": "application/json",
-    };
-    final body = {
-      "devKey": "DE302DB6-B490-45A7-83F4-96A76BE28CE9",
-      "categoryId": categoryId.toString(),
-    };
+Future<bool> deleteCategory(int categoryId) async {
+  Map<String, String> headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+  };
 
-    final response = await http.post(
-      Uri.parse('https://api.jointact.com/App/DeleteCategory'),
-      body: json.encode(body),
-      headers: headers,
-    );
+  final response = await http.post(
+    Uri.parse('https://api.jointact.com/App/DeleteCategory?devKey=DE302DB6-B490-45A7-83F4-96A76BE28CE9&categoryId=$categoryId'),
+    headers: headers,
+  );
+  print('Response Status Code: ${response.statusCode}');
 
-    if (response.statusCode == 200) {
-      return true; // Başarı durumunda true döndürülebilir
-    } else {
-      return false; // Başarısız durumunda false döndürülebilir
-    }
+
+  if (response.statusCode == 200) {
+    return true; // Başarı durumunda true döndürülebilir
+  } else {
+    return false; // Başarısız durumunda false döndürülebilir
   }
+}
+
 }
