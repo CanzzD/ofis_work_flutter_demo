@@ -77,10 +77,10 @@ return Scaffold(
                       );
                     }, 
                     child: Text(
-                      "Product Manager",
+                      "Product and Category List",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 37,
+                        fontSize: 27,
                         color: Colors.black
                       ),
                       )

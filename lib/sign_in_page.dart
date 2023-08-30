@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'services/user/create_new_user.dart';
 
-import 'create_new_user.dart';
-
-class SignInPage extends StatefulWidget {
-  @override
-  _SignInPageState createState() => _SignInPageState();
-}
-
-class _SignInPageState extends State<SignInPage> {
-  final TextEditingController _adController = TextEditingController();
+class SignInPage extends StatelessWidget {
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context, listen: false); // Provider'ı al
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Kullanıcı Paneli'),
@@ -29,18 +25,18 @@ class _SignInPageState extends State<SignInPage> {
             ),
             SizedBox(height: 16),
             TextField(
-              controller: _adController,
-              decoration: InputDecoration(labelText: 'Ad'),
+              controller: _nameController,
+              decoration: InputDecoration(labelText: 'Name'),
             ),
             SizedBox(height: 16),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(labelText: 'e-Mail'),
             ),
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                createUser();
+                userProvider.createUser(_nameController.text, _emailController.text); // Kullanıcı oluşturma işlemini çağır
               },
               child: Text('Kullanıcı Oluştur'),
             ),

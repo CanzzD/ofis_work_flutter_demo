@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ofis_work_flutter_demo/services/admin/product_service.dart'; // Kategori servisi dosyasının yolunu düzenleyin
 
 class ProductManager extends StatefulWidget {
   @override
@@ -6,37 +7,43 @@ class ProductManager extends StatefulWidget {
 }
 
 class _ProductManagerState extends State<ProductManager> {
-  // Ürün listesi örnek olarak bir liste içinde saklanabilir
-  List<String> urunler = ['Laptop', 'T-shirt', 'Tablo'];
+  final TextEditingController _productNameController= TextEditingController();
+
+  void _addCategory() async {
+    String productName = _productNameController.text;
+
+    await ProductService.addCategory(productName);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Manager'),
+        title: Text('Admin Panel - Ürün Ekle'),
       ),
-      body: ListView.builder(
-        itemCount: urunler.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(urunler[index]),
-            trailing: IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () {
-                setState(() {
-                  urunler.removeAt(index);
-                });
-              },
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Ürün Ekle',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Ürün ekleme işlemi
-          // Burada gerekli dialog veya navigasyonu kullanarak yeni ürün eklemesi yapılabilir
-        },
-        child: Icon(Icons.add),
+            SizedBox(height: 16),
+            TextField(
+              controller: _productNameController,
+              decoration: InputDecoration(labelText: 'Ürün Adı'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                _addCategory();
+              },
+              child: Text('Ürün Ekle'),
+            ),
+          ],
+        ),
       ),
     );
   }

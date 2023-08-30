@@ -50,10 +50,10 @@ class _AdminPanelState extends State<AdminPanel> {
                       );
                     },  
                     child: Text(
-                      "Category Manager",
+                      "Category Operations",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 35,
+                        fontSize: 30,
                         color: Colors.black
                       ),
                       )
@@ -77,10 +77,10 @@ class _AdminPanelState extends State<AdminPanel> {
                       );
                     }, 
                     child: Text(
-                      "Product Manager",
+                      "Product Operations",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 37,
+                        fontSize: 30,
                         color: Colors.black
                       ),
                       )
